@@ -61,6 +61,7 @@
     "dotenv-webpack": "^1.7.0",
     "echo-cli": "^1.0.8",
     "eslint": "^6.8.0",
+    "esm": "^3.2.25",
     "gh-pages": "^2.2.0",
     "livereload": "^0.9.1",
     "mocha": "^6.2.2",
