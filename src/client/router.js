@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import h from 'react-hyperscript';
 import _ from 'lodash';
-import ExampleComponent from './components/example';
+import Dashboard from './components/dashboard';
 import PageNotFound from './components/page-not-found';
 
 const routes = [
   {
     path: '/',
     render: () => {
-      return h(ExampleComponent);
+      return h(Dashboard);
     }
   },
   {

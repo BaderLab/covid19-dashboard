@@ -1,1 +1,3 @@
-@import "./network-editor/index.css";
+@import "./dashboard.css";
+@import "./map.css";
+@import "./feed.css";

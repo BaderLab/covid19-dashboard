@@ -1,0 +1,25 @@
+.dashboard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-info-panel {
+  width: 20em;
+  position: relative;
+  background: #fff;
+  box-shadow: 0 0 2em 0.25em rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.dashboard-viz {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  z-index: 1;
+}

@@ -20,3 +20,6 @@
 /* google material icons and form widget style with material icons */
 @import "./vendor/fonts/material-icons.css";
 @import "./vendor/fonts/material-form.css";
+
+/* leaflet */
+@import "leaflet/dist/leaflet.css";
