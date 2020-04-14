@@ -32,6 +32,7 @@
     "test:mocha": "mocha -r dotenv/config -r esm",
     "test:bundle": "run-s bundle",
     "test": "run-s lint test:*",
+    "test:data": "node test/util/data.js 100 > test-data.json",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
