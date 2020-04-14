@@ -1,1 +1,3 @@
-// misc util code
+import EventEmitterProxy from './event-emitter-proxy';
+
+export { EventEmitterProxy };

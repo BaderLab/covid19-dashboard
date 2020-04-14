@@ -2,12 +2,24 @@ import h from 'react-hyperscript';
 import { Component } from 'react';
 import { Map } from './map';
 import { Feed } from './feed';
+import Controller from './controller';
 
 export class Dashboard extends Component {
   constructor(props){
     super(props);
 
-    this.controller = {}; // TODO
+    this.controller = new Controller();
+  }
+
+  componentDidMount(){
+    const getData = async () => {
+      const res = await fetch('/test-data.json');
+      const data = await res.json();
+
+      this.controller.refresh(data);
+    };
+
+    getData();
   }
 
   render(){
@@ -18,7 +30,7 @@ export class Dashboard extends Component {
         h(Map, { controller })
       ]),
       h('div.dashboard-info-panel', [
-        h(Feed)
+        h(Feed, { controller })
       ])
     ]);
   }

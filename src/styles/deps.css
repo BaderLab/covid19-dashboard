@@ -15,11 +15,11 @@
 
 /* font awesome icons and form widget styling with font awesome */
 @import "./vendor/fonts/fontawesome.css";
-/* @import "./vendor/fonts/fontawesome-form.css"; */
+@import "./vendor/fonts/fontawesome-form.css";
 
 /* google material icons and form widget style with material icons */
-@import "./vendor/fonts/material-icons.css";
-@import "./vendor/fonts/material-form.css";
+/* @import "./vendor/fonts/material-icons.css"; */
+/* @import "./vendor/fonts/material-form.css"; */
 
 /* leaflet */
 @import "leaflet/dist/leaflet.css";

@@ -1,0 +1,70 @@
+.feed-entry {
+  border-bottom: 1px solid #e0e0e0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.25em;
+}
+
+.feed-title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.feed-patient {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.25em;
+}
+
+.feed-patient-descr {
+  width: 2.75em;
+}
+
+.feed-age,
+.feed-sex,
+.feed-symptoms,
+.feed-symptom {
+  display: inline-block;
+}
+
+.feed-sex {
+  margin-left: 0.0625em;
+}
+
+.feed-symptoms {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.feed-symptom {
+  width: 1.5em;
+  text-align: center;
+  color: #ccc;
+}
+
+.feed-symptom-true {
+  color: #000;
+}
+
+.feed-date {
+  text-align: right;
+}
+
+.feed-date-absolute {
+  color: #aaa;
+  font-size: 0.8em;
+}
+
+.feed-tests {
+  margin-top: 0.5em;
+}
+
+.feed-test {
+  width: 100%;
+  height: 0.5em;
+  background-color: #ccc;
+  margin: 1px 0;
+}
