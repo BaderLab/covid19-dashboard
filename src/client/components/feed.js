@@ -1,7 +1,7 @@
 import h from 'react-hyperscript';
 import { Component } from 'react';
 import { EventEmitterProxy } from '../../util';
-import { parseISO, formatDistance, format } from 'date-fns';
+import { formatDistance, format } from 'date-fns';
 import classNames from 'classnames';
 
 export class Feed extends Component {
@@ -28,7 +28,7 @@ export class Feed extends Component {
     const now = new Date();
 
     return h('div.feed', controller.data.map(entry => {
-      const date = parseISO(entry.timestamp);
+      const date = entry.date;
       const relativeDate = formatDistance(date, now) + ' ago';
       const absoluteDate = format(date, 'yyyy-MM-dd');
       const { age, sex } = entry.patient_information;
