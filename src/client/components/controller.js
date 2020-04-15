@@ -5,6 +5,7 @@ export class Controller {
   constructor(data){
     this.bus = new EventEmitter();
     this.data = [];
+    this.filteredData = [];
   }
 
   refresh(data){
@@ -16,15 +17,21 @@ export class Controller {
     });
 
     this.data.sort((a, b) => compareDesc(a.date, b.date));
+    this.filteredData = Array.from(this.data);
 
     console.log('Loaded sample data');
     console.log(data);
 
-    this.bus.emit('refresh');
+    this.bus.emit('refresh', this.data);
   }
 
-  setViewport(){
+  filter(by){
+    this.filteredData = this.data.filter(by);
 
+    console.log('Filtered data');
+    console.log(this.filteredData);
+
+    this.bus.emit('filter', this.filteredData);
   }
 }
 

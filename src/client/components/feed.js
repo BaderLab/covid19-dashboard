@@ -17,6 +17,7 @@ export class Feed extends Component {
 
   componentDidMount(){
     this.busProxy.addListener('refresh', () => this.dirty());
+    this.busProxy.addListener('filter', () => this.dirty());
   }
 
   componentWillUnmount(){
@@ -27,7 +28,7 @@ export class Feed extends Component {
     const { controller } = this.props;
     const now = new Date();
 
-    return h('div.feed', controller.data.map(entry => {
+    return h('div.feed', controller.filteredData.map(entry => {
       const date = entry.date;
       const relativeDate = formatDistance(date, now) + ' ago';
       const absoluteDate = format(date, 'yyyy-MM-dd');

@@ -1,6 +1,6 @@
 import h from 'react-hyperscript';
 import { Component } from 'react';
-import { Map } from './map';
+import { MapComponent } from './map';
 import { Feed } from './feed';
 import Controller from './controller';
 
@@ -27,7 +27,7 @@ export class Dashboard extends Component {
 
     return h('div.dashboard', [
       h('div.dashboard-viz', [
-        h(Map, { controller })
+        h(MapComponent, { controller })
       ]),
       h('div.dashboard-info-panel', [
         h(Feed, { controller })

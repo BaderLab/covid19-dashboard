@@ -4,7 +4,26 @@ import L from 'leaflet';
 import { EventEmitterProxy } from '../../util';
 import { add } from 'date-fns';
 
-export class Map extends Component {
+const makeGeo = entry => L.geoJSON(entry.location, {
+  pointToLayer: (feature, latlng) => {
+    return L.circleMarker(latlng, {
+      radius: 8,
+      fillColor: "#ff7800",
+      color: "#000",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    });
+  }
+});
+
+const makeLatlng = entry => {
+  const coords = entry.location.features[0].geometry.coordinates;
+
+  return L.latLng(coords[1], coords[0]);
+}
+
+export class MapComponent extends Component {
   constructor(props){
     super(props);
 
@@ -23,6 +42,7 @@ export class Map extends Component {
 
   initMap(){
     const map = this.map = L.map(this.mapContainer);
+    const { controller } = this.props;
 
     // TODO set this based on gps query -- currently using canned value from example data
     map.setView([43.83155486662417, -79.37278747558595], 10);
@@ -40,25 +60,37 @@ export class Map extends Component {
     //   maxZoom: 20,
     //   attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
     // });
+
+    const updateFilter = _.debounce(() => {
+      const bounds = this.map.getBounds();
+
+      controller.filter(entry => {
+        const { latlng } = this.poiMap.get(entry);
+
+        return bounds.contains(latlng);
+      });
+    }, 250);
+
+    map.on('move', updateFilter);
+    map.on('zoom', updateFilter);
   }
 
   updatePOIs(){
     const { data } = this.props.controller;
 
-    const makeGeo = entry => L.geoJSON(entry.location, {
-      pointToLayer: (feature, latlng) => {
-        return L.circleMarker(latlng, {
-          radius: 8,
-          fillColor: "#ff7800",
-          color: "#000",
-          weight: 1,
-          opacity: 1,
-          fillOpacity: 0.8
-        });
-      }
-    }).addTo(this.map);
+    this.pois = [];
+    this.poiMap = new Map();
 
-    data.forEach(makeGeo);
+    data.forEach(entry => {
+      const geo = makeGeo(entry);
+      const latlng = makeLatlng(entry);
+      const poi = { geo, entry, latlng };
+
+      this.pois.push(poi);
+      this.poiMap.set(entry, poi);
+
+      geo.addTo(this.map);
+    });
   }
 
   render(){
@@ -70,4 +102,4 @@ export class Map extends Component {
   }
 }
 
-export default Map;
+export default MapComponent;
