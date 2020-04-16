@@ -66,6 +66,11 @@ const numEntries = process.argv[2] ? process.argv[2] : 10;
 
 let data = [];
 for(let i = 0; i < numEntries; i++) {
+    let fever = randomArg(true,false);
+    let cough = randomArg(true,false);
+    let fatigue = randomArg(true,false);
+    let symptomatic = fever || cough || fatigue;
+
     data.push({
         id: randomID(10),
         patient_information: {
@@ -74,10 +79,15 @@ for(let i = 0; i < numEntries; i++) {
             travel_history: randomArg("europe","USA","china","brazil"),
             known_concurrent_conditions: randomArg(null,"diabetes","hypertension","cancer")
         },
-        symptoms:{
-            fever: randomArg(true,false),
-            cough: randomArg(true,false),
-            fatigue: randomArg(true,false)
+        symptoms: {
+            fever: fever,
+            cough: cough,
+            fatigue: fatigue,
+            severity: !symptomatic ? "asymptomatic" : randomArg("mild","moderate","severe"),
+        },
+        test_information: {
+            score: randomNum(0.0, 1.0),
+            result: randomArg(true,false)
         },
         timestamp: new Date(2020, 2, randomInt(0,30)),
         location: randomPointInGTA() // geojson
