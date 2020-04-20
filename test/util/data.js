@@ -66,10 +66,10 @@ const numEntries = process.argv[2] ? process.argv[2] : 10;
 
 let data = [];
 for(let i = 0; i < numEntries; i++) {
-    let fever = randomArg(true,false);
-    let cough = randomArg(true,false);
-    let fatigue = randomArg(true,false);
-    let symptomatic = fever || cough || fatigue;
+    const fever = randomArg(true,false);
+    const cough = randomArg(true,false);
+    const fatigue = randomArg(true,false);
+    const symptomatic = fever || cough || fatigue;
 
     data.push({
         id: randomID(10),
@@ -80,9 +80,9 @@ for(let i = 0; i < numEntries; i++) {
             known_concurrent_conditions: randomArg(null,"diabetes","hypertension","cancer")
         },
         symptoms: {
-            fever: fever,
-            cough: cough,
-            fatigue: fatigue,
+            fever,
+            cough,
+            fatigue,
             severity: !symptomatic ? "asymptomatic" : randomArg("mild","moderate","severe"),
         },
         test_information: {
