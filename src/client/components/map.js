@@ -1,8 +1,24 @@
 import h from 'react-hyperscript';
 import { Component } from 'react';
 import L from 'leaflet';
+import 'leaflet.markercluster';
 import { EventEmitterProxy } from '../../util';
 import { add } from 'date-fns';
+
+// This isn't working
+//
+//import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
+//import iconUrl from "leaflet/dist/images/marker-icon.png";
+//import shadowUrl from "leaflet/dist/images/marker-shadow.png";
+//
+//delete L.Icon.Default.prototype._getIconUrl;
+//
+//L.Icon.Default.mergeOptions({
+//   iconRetinaUrl: iconRetinaUrl,
+//   iconUrl: iconUrl,
+//   shadowUrl: shadowUrl
+//});
+
 
 const makeGeo = entry => L.geoJSON(entry.location, {
   pointToLayer: (feature, latlng) => {
@@ -21,7 +37,7 @@ const makeLatlng = entry => {
   const coords = entry.location.features[0].geometry.coordinates;
 
   return L.latLng(coords[1], coords[0]);
-}
+};
 
 export class MapComponent extends Component {
   constructor(props){
@@ -81,16 +97,22 @@ export class MapComponent extends Component {
     this.pois = [];
     this.poiMap = new Map();
 
+    let markers = L.markerClusterGroup();
+
     data.forEach(entry => {
       const geo = makeGeo(entry);
       const latlng = makeLatlng(entry);
       const poi = { geo, entry, latlng };
+ 
+      markers.addLayer(L.marker(latlng));
 
       this.pois.push(poi);
       this.poiMap.set(entry, poi);
 
-      geo.addTo(this.map);
+      // geo.addTo(this.map);
     });
+
+    this.map.addLayer(markers);
   }
 
   render(){
