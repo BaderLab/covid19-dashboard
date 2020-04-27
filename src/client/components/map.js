@@ -5,20 +5,6 @@ import 'leaflet.markercluster';
 import { EventEmitterProxy } from '../../util';
 import { add } from 'date-fns';
 
-// This isn't working
-//
-//import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
-//import iconUrl from "leaflet/dist/images/marker-icon.png";
-//import shadowUrl from "leaflet/dist/images/marker-shadow.png";
-//
-//delete L.Icon.Default.prototype._getIconUrl;
-//
-//L.Icon.Default.mergeOptions({
-//   iconRetinaUrl: iconRetinaUrl,
-//   iconUrl: iconUrl,
-//   shadowUrl: shadowUrl
-//});
-
 
 const makeGeo = entry => L.geoJSON(entry.location, {
   pointToLayer: (feature, latlng) => {
@@ -97,14 +83,17 @@ export class MapComponent extends Component {
     this.pois = [];
     this.poiMap = new Map();
 
-    let markers = L.markerClusterGroup();
+    const markers = L.markerClusterGroup();
+    const icon = L.divIcon({ className: 'map-entry-icon' });
 
     data.forEach(entry => {
       const geo = makeGeo(entry);
       const latlng = makeLatlng(entry);
       const poi = { geo, entry, latlng };
+
+      const marker = L.marker(latlng, { icon });
  
-      markers.addLayer(L.marker(latlng));
+      markers.addLayer(marker);
 
       this.pois.push(poi);
       this.poiMap.set(entry, poi);
