@@ -3,7 +3,7 @@ import { Component } from 'react';
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import { EventEmitterProxy } from '../../util';
-import { add } from 'date-fns';
+import _ from 'lodash';
 
 
 const makeGeo = entry => L.geoJSON(entry.location, {
@@ -105,7 +105,7 @@ export class MapComponent extends Component {
   }
 
   render(){
-    const { controller } = this.props;
+    // const { controller } = this.props;
 
     return h('div.map', {
       ref: el => this.mapContainer = el
