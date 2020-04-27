@@ -2,7 +2,7 @@ import h from 'react-hyperscript';
 import { Component } from 'react';
 import L from 'leaflet';
 import { EventEmitterProxy } from '../../util';
-import { add } from 'date-fns';
+import _ from 'lodash';
 
 const makeGeo = entry => L.geoJSON(entry.location, {
   pointToLayer: (feature, latlng) => {
@@ -21,7 +21,7 @@ const makeLatlng = entry => {
   const coords = entry.location.features[0].geometry.coordinates;
 
   return L.latLng(coords[1], coords[0]);
-}
+};
 
 export class MapComponent extends Component {
   constructor(props){
@@ -94,7 +94,7 @@ export class MapComponent extends Component {
   }
 
   render(){
-    const { controller } = this.props;
+    // const { controller } = this.props;
 
     return h('div.map', {
       ref: el => this.mapContainer = el
