@@ -11,7 +11,15 @@ let conf = {
         url: 'inline',
         encodeType: 'encodeURIComponent',
         optimizeSvgEncode: true,
-        maxSize: 20
+        maxSize: Number.MAX_SAFE_INTEGER,
+        useHash: false
+      },
+      {
+        filter: '**/*.png',
+        url: 'inline',
+        encodeType: 'base64',
+        maxSize: Number.MAX_SAFE_INTEGER,
+        useHash: false
       },
       {
         filter: '**/*.woff',
