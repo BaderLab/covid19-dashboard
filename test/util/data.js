@@ -62,7 +62,11 @@ function randomPointInGTA() {
     }
 }
 
-const numEntries = process.argv[2] ? process.argv[2] : 10;
+
+const numEntries   = process.argv[2] ? process.argv[2] : 10;
+const numLocations = process.argv[3] ? process.argv[3] : 10;
+
+const pins = Array.from({length:numLocations}, randomPointInGTA);
 
 let data = [];
 for(let i = 0; i < numEntries; i++) {
@@ -90,7 +94,7 @@ for(let i = 0; i < numEntries; i++) {
             result: randomArg(true,false)
         },
         timestamp: new Date(2020, 2, randomInt(0,30)),
-        location: randomPointInGTA() // geojson
+        location: randomArg(...pins)
     });
 }
 
