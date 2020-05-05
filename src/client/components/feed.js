@@ -36,8 +36,6 @@ export class Feed extends Component {
       const { fever, cough, fatigue, severity } = entry.symptoms;
       const { result, score: statusScore } = entry.test_information;
       const symptomsScore = (severity === 'mild' ? 0.25 : (severity === 'moderate' ? 0.5 : 1));
-
-      console.log(entry)
       
       const Symptom = ({ hasSymptom, icon }) => h('div.feed-symptom', {
         className: classNames({ 'feed-symptom-true': hasSymptom })

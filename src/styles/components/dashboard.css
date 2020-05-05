@@ -24,3 +24,17 @@
   position: relative;
   z-index: 1;
 }
+
+.dashboard-stats-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 20em;
+  margin: 1em 1em 2em 1em;
+  border-radius: 0.25em;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: 3;
+  height: 150px;
+  overflow-x: auto;
+}

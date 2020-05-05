@@ -1,0 +1,9 @@
+.stats-charts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.stat-chart {
+  margin: 10px;
+}

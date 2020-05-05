@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { MapComponent } from './map';
 import { Feed } from './feed';
 import Controller from './controller';
+import StatsCharts from './stats-charts';
 
 export class Dashboard extends Component {
   constructor(props){
@@ -31,6 +32,9 @@ export class Dashboard extends Component {
       ]),
       h('div.dashboard-info-panel', [
         h(Feed, { controller })
+      ]),
+      h('div.dashboard-stats-panel', [
+        h(StatsCharts, { controller })
       ])
     ]);
   }
