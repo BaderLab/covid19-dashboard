@@ -4,7 +4,6 @@ import Chart from 'chart.js';
 import _ from 'lodash';
 
 const isPositive = entry => entry.test_information.result;
-const isNegative = entry => !isPositive(entry);
 const getAge = entry => entry.patient_information.age;
 const getFever = entry => entry.symptoms.fever;
 const getCough = entry => entry.symptoms.cough;
