@@ -1,8 +1,10 @@
 import h from 'react-hyperscript';
 import { Component } from 'react';
 import L from 'leaflet';
+import 'leaflet.markercluster';
 import { EventEmitterProxy } from '../../util';
 import _ from 'lodash';
+
 
 const makeGeo = entry => L.geoJSON(entry.location, {
   pointToLayer: (feature, latlng) => {
@@ -81,16 +83,25 @@ export class MapComponent extends Component {
     this.pois = [];
     this.poiMap = new Map();
 
+    const markers = L.markerClusterGroup();
+    const icon = L.divIcon({ className: 'map-entry-icon' });
+
     data.forEach(entry => {
       const geo = makeGeo(entry);
       const latlng = makeLatlng(entry);
       const poi = { geo, entry, latlng };
 
+      const marker = L.marker(latlng, { icon });
+ 
+      markers.addLayer(marker);
+
       this.pois.push(poi);
       this.poiMap.set(entry, poi);
 
-      geo.addTo(this.map);
+      // geo.addTo(this.map);
     });
+
+    this.map.addLayer(markers);
   }
 
   render(){
