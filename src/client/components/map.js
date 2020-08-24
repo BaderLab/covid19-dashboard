@@ -43,7 +43,9 @@ export class MapComponent extends Component {
   }
 
   initMap(){
-    const map = this.map = L.map(this.mapContainer);
+    const map = this.map = L.map(this.mapContainer, {
+      maxZoom: 16
+    });
     const { controller } = this.props;
 
     // TODO set this based on gps query -- currently using canned value from example data
@@ -83,7 +85,11 @@ export class MapComponent extends Component {
     this.pois = [];
     this.poiMap = new Map();
 
-    const markers = L.markerClusterGroup();
+    const markers = L.markerClusterGroup({
+      zoomToBoundsOnClick: true,
+      maxClusterRadius: 10, // one test centre per cluster
+      spiderfyOnMaxZoom: false
+    });
     const icon = L.divIcon({ className: 'map-entry-icon' });
 
     data.forEach(entry => {

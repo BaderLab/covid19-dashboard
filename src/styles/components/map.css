@@ -5,3 +5,16 @@
 .map-entry-icon {
   background: cyan;
 }
+
+.marker-cluster {
+  color: #fff;
+  background-color: hsla(358, 84%, 41%, 0.8);
+}
+
+.marker-cluster div {
+  background-color: hsla(358, 84%, 41%, 1);
+}
+
+.marker-cluster * {
+  font-weight: bold !important;
+}
